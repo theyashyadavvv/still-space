@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import project1 from "@/assets/project-1.jpg";
@@ -66,6 +66,8 @@ const categories = ["All", "Interior Design", "Architecture", "Renovation", "Com
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const headerRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true });
 
   const filteredProjects =
     activeCategory === "All"
@@ -78,19 +80,38 @@ const Projects = () => {
   return (
     <Layout>
       {/* Hero Header */}
-      <section className="pt-32 md:pt-40 pb-16">
+      <section className="pt-32 md:pt-40 pb-16" ref={headerRef}>
         <div className="container-editorial">
           <AnimatedSection>
             <div className="flex items-end justify-between gap-8">
               <div>
-                <span className="text-label text-muted-foreground">Portfolio</span>
-                <h1 className="mt-4 text-display max-w-4xl">Selected Work</h1>
+                <motion.span
+                  className="text-label text-muted-foreground inline-block"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={headerInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6 }}
+                >
+                  Portfolio
+                </motion.span>
+                <motion.h1
+                  className="mt-4 text-display max-w-4xl"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                >
+                  Selected Work
+                </motion.h1>
               </div>
-              <div className="hidden md:block">
-                <span className="font-serif text-7xl lg:text-8xl text-muted-foreground/20 font-light">
+              <motion.div
+                className="hidden md:block"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={headerInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <span className="font-serif text-7xl lg:text-8xl gradient-text-gold font-light">
                   {String(filteredProjects.length).padStart(2, "0")}
                 </span>
-              </div>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>
@@ -100,34 +121,33 @@ const Projects = () => {
       <section className="pb-16">
         <div className="container-editorial">
           <AnimatedSection delay={0.2}>
-            <div className="flex flex-wrap gap-6 md:gap-10 border-b border-border pb-6">
-              {categories.map((category) => (
-                <button
+            <div className="flex flex-wrap gap-4 md:gap-6 pb-6 relative">
+              {categories.map((category, index) => (
+                <motion.button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className="relative group"
-                >
-                  <span
-                    className={`text-caption transition-colors duration-500 ${
-                      activeCategory === category
-                        ? "text-foreground"
-                        : "text-muted-foreground group-hover:text-foreground"
+                  className={`relative px-6 py-3 rounded-full text-caption transition-all duration-300 ${activeCategory === category
+                      ? "bg-foreground text-background"
+                      : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
                     }`}
-                  >
-                    {category}
-                  </span>
-                  <motion.div
-                    className="absolute -bottom-6 left-0 right-0 h-px bg-foreground"
-                    initial={false}
-                    animate={{
-                      scaleX: activeCategory === category ? 1 : 0,
-                      opacity: activeCategory === category ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  />
-                </button>
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  {category}
+                  {activeCategory === category && (
+                    <motion.div
+                      className="absolute inset-0 rounded-full bg-foreground -z-10"
+                      layoutId="activeFilter"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </motion.button>
               ))}
             </div>
+            <div className="h-px bg-gradient-to-r from-border via-accent/30 to-border" />
           </AnimatedSection>
         </div>
       </section>
@@ -143,7 +163,7 @@ const Projects = () => {
                 onMouseEnter={() => setHoveredProject(featuredProject.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden rounded-xl">
                   <motion.div
                     className="aspect-[21/9]"
                     whileHover={{ scale: 1.02 }}
@@ -155,24 +175,36 @@ const Projects = () => {
                       className="w-full h-full object-cover"
                     />
                   </motion.div>
-                  
-                  {/* Elegant overlay */}
+
+                  {/* Premium gradient overlay */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/20 to-transparent"
-                    initial={{ opacity: 0.4 }}
-                    animate={{ opacity: hoveredProject === featuredProject.id ? 0.7 : 0.4 }}
+                    className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent"
+                    initial={{ opacity: 0.5 }}
+                    animate={{ opacity: hoveredProject === featuredProject.id ? 0.8 : 0.5 }}
                     transition={{ duration: 0.5 }}
                   />
-                  
+
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 gradient-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  />
+
                   {/* Content overlay */}
                   <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12">
                     <div className="flex justify-between items-start">
-                      <span className="text-label text-primary-foreground/60">Featured</span>
+                      <motion.span
+                        className="text-label text-primary-foreground/60 glass-dark px-4 py-2 rounded-full"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                      >
+                        Featured
+                      </motion.span>
                       <span className="font-serif text-6xl md:text-8xl text-primary-foreground/10 font-light">
                         01
                       </span>
                     </div>
-                    
+
                     <div className="flex justify-between items-end">
                       <div>
                         <motion.div
@@ -183,20 +215,23 @@ const Projects = () => {
                           <span className="text-caption text-primary-foreground/60">
                             {featuredProject.location} — {featuredProject.year}
                           </span>
-                          <h2 className="mt-3 font-serif text-3xl md:text-5xl text-primary-foreground font-light">
+                          <h2 className="mt-3 font-serif text-3xl md:text-5xl text-primary-foreground font-light text-glow">
                             {featuredProject.title}
                           </h2>
                         </motion.div>
                       </div>
-                      
+
                       <motion.div
-                        className="hidden md:flex items-center gap-3 text-primary-foreground/80"
-                        animate={{ x: hoveredProject === featuredProject.id ? 0 : 10, opacity: hoveredProject === featuredProject.id ? 1 : 0 }}
+                        className="hidden md:flex items-center gap-3 text-primary-foreground/80 glass-dark px-6 py-3 rounded-full"
+                        animate={{
+                          x: hoveredProject === featuredProject.id ? 0 : 20,
+                          opacity: hoveredProject === featuredProject.id ? 1 : 0
+                        }}
                         transition={{ duration: 0.4 }}
                       >
                         <span className="text-caption">View Project</span>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </motion.div>
                     </div>
@@ -208,13 +243,12 @@ const Projects = () => {
         </section>
       )}
 
-      {/* Projects Grid - Staggered Masonry */}
+      {/* Projects Grid - Enhanced Masonry */}
       <section className="pb-32">
         <div className="container-editorial">
           <motion.div layout className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
             <AnimatePresence mode="popLayout">
               {gridProjects.map((project, index) => {
-                // Create staggered masonry effect
                 const isLarge = index % 3 === 0;
                 const colSpan = isLarge ? "md:col-span-7" : "md:col-span-5";
                 const aspectRatio = isLarge ? "aspect-[4/3]" : "aspect-[3/4]";
@@ -224,9 +258,9 @@ const Projects = () => {
                   <motion.div
                     key={project.id}
                     layout
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
                     transition={{
                       duration: 0.6,
                       delay: index * 0.1,
@@ -236,39 +270,54 @@ const Projects = () => {
                   >
                     <Link
                       to="#"
-                      className="group block relative"
+                      className="group block relative perspective-1000"
                       onMouseEnter={() => setHoveredProject(project.id)}
                       onMouseLeave={() => setHoveredProject(null)}
                     >
-                      <div className={`relative overflow-hidden ${aspectRatio}`}>
+                      <motion.div
+                        className={`relative overflow-hidden rounded-lg ${aspectRatio}`}
+                        whileHover={{ rotateX: 2, rotateY: -3 }}
+                        transition={{ duration: 0.5 }}
+                      >
                         <motion.img
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover"
-                          whileHover={{ scale: 1.05 }}
+                          whileHover={{ scale: 1.08 }}
                           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         />
-                        
-                        {/* Hover overlay */}
+
+                        {/* Gradient overlay */}
                         <motion.div
-                          className="absolute inset-0 bg-foreground/50"
+                          className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
                           transition={{ duration: 0.4 }}
                         />
-                        
+
                         {/* Project number watermark */}
                         <div className="absolute top-6 right-6">
-                          <span className="font-serif text-4xl md:text-5xl text-primary-foreground/10 font-light group-hover:text-primary-foreground/30 transition-colors duration-500">
+                          <motion.span
+                            className="font-serif text-4xl md:text-5xl text-white/10 font-light"
+                            animate={{
+                              color: hoveredProject === project.id
+                                ? "rgba(255,255,255,0.4)"
+                                : "rgba(255,255,255,0.1)"
+                            }}
+                            transition={{ duration: 0.3 }}
+                          >
                             {projectNumber}
-                          </span>
+                          </motion.span>
                         </div>
-                        
+
                         {/* Content */}
                         <motion.div
                           className="absolute inset-0 flex flex-col justify-end p-6 md:p-8"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{
+                            opacity: hoveredProject === project.id ? 1 : 0,
+                            y: hoveredProject === project.id ? 0 : 20
+                          }}
                           transition={{ duration: 0.4 }}
                         >
                           <span className="text-caption text-primary-foreground/60">
@@ -281,8 +330,8 @@ const Projects = () => {
                             {project.location}
                           </span>
                         </motion.div>
-                      </div>
-                      
+                      </motion.div>
+
                       {/* Mobile info */}
                       <div className="mt-4 md:hidden">
                         <div className="flex items-center justify-between">
@@ -311,16 +360,23 @@ const Projects = () => {
         <div className="container-editorial">
           <AnimatedSection>
             <div className="border-t border-border pt-16 text-center">
+              <motion.div
+                className="w-16 h-16 mx-auto mb-8 rounded-full border border-accent/30 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                transition={{ duration: 0.5 }}
+              >
+                <span className="text-2xl gradient-text-gold">✦</span>
+              </motion.div>
               <p className="text-subhead text-muted-foreground max-w-xl mx-auto">
                 Every space tells a story of meticulous craft and timeless design.
               </p>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-3 mt-8 text-caption hover:text-muted-foreground transition-colors duration-300"
+                className="inline-flex items-center gap-3 mt-8 btn-premium"
               >
                 <span>Start Your Project</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
             </div>
