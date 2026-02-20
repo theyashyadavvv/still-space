@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    quote: "Atelier understood what we couldn't articulate. They created a home that feels like it was always there, waiting for us.",
+    quote: "Senghani Architects understood what we couldn't articulate. They created a home that feels like it was always there, waiting for us.",
     name: "Sarah Mitchell",
     role: "Homeowner, Hillside Residence",
     rating: 5,

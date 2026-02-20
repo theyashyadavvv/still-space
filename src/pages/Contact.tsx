@@ -252,8 +252,8 @@ const Contact = () => {
                 >
                   <span className="text-label text-muted-foreground">Email</span>
                   <p className="mt-3 text-body">
-                    <a href="mailto:hello@atelier-studio.com" className="link-underline hover:text-accent transition-colors">
-                      hello@atelier-studio.com
+                    <a href="mailto:hello@senghaniarchitects.com" className="link-underline hover:text-accent transition-colors">
+                      hello@senghaniarchitects.com
                     </a>
                   </p>
                 </motion.div>

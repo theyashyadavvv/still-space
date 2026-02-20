@@ -33,7 +33,7 @@ export const Footer = () => {
                 className="font-serif text-3xl font-light tracking-wide gradient-text-gold"
                 whileHover={{ scale: 1.02 }}
               >
-                ATELIER
+                SENGHANI ARCHITECTS
               </motion.span>
             </Link>
             <p className="mt-6 text-body text-muted-foreground max-w-xs">
@@ -94,8 +94,8 @@ export const Footer = () => {
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <a href="mailto:hello@atelier-studio.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                  hello@atelier-studio.com
+                <a href="mailto:hello@senghaniarchitects.com" className="text-muted-foreground hover:text-foreground transition-colors">
+                  hello@senghaniarchitects.com
                 </a>
               </motion.p>
               <p className="text-body text-muted-foreground">
@@ -123,7 +123,7 @@ export const Footer = () => {
           viewport={{ once: true }}
         >
           <p className="text-caption text-muted-foreground">
-            © {new Date().getFullYear()} Atelier Studio. All rights reserved.
+            © {new Date().getFullYear()} Senghani Architects. All rights reserved.
           </p>
           <div className="flex gap-8">
             <a href="#" className="text-caption text-muted-foreground hover:text-foreground transition-colors duration-500">

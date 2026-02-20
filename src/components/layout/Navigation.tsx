@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import logoImage from "@/assets/logo.png";
 
 const navLinks = [
   { path: "/", label: "Home" },
@@ -37,8 +38,8 @@ export const Navigation = () => {
 
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-luxury ${isScrolled
-            ? "bg-background/90 backdrop-blur-xl shadow-sm"
-            : "bg-transparent"
+          ? "bg-background/90 backdrop-blur-xl shadow-sm"
+          : "bg-transparent"
           }`}
       >
         {/* Gradient border on scroll */}
@@ -53,13 +54,16 @@ export const Navigation = () => {
           <div className="flex items-center justify-between h-20 md:h-24">
             {/* Animated Logo */}
             <Link to="/" className="group relative">
-              <motion.span
-                className="font-serif text-xl md:text-2xl font-light tracking-wide text-foreground inline-block"
+              <motion.div
+                className="flex items-center gap-3"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <span className="gradient-text-gold">ATELIER</span>
-              </motion.span>
+                <img src={logoImage} alt="Senghani Architects Logo" className="h-10 w-auto object-contain" />
+                <span className="font-serif text-xl md:text-2xl font-light tracking-wide text-foreground inline-block">
+                  <span className="gradient-text-gold">SENGHANI ARCHITECTS</span>
+                </span>
+              </motion.div>
               <motion.span
                 className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-accent to-accent/50"
                 initial={{ scaleX: 0 }}
@@ -80,8 +84,8 @@ export const Navigation = () => {
                   <Link
                     to={link.path}
                     className={`relative text-caption transition-colors duration-500 group ${location.pathname === link.path
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                   >
                     <span className="relative z-10">{link.label}</span>
@@ -189,8 +193,8 @@ export const Navigation = () => {
                     <Link
                       to={link.path}
                       className={`font-serif text-4xl md:text-5xl font-light transition-all duration-500 ${location.pathname === link.path
-                          ? "text-foreground"
-                          : "text-muted-foreground hover:text-foreground hover:tracking-wider"
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:tracking-wider"
                         }`}
                     >
                       {link.label}
@@ -206,7 +210,7 @@ export const Navigation = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                <p className="text-caption text-muted-foreground">hello@atelier-studio.com</p>
+                <p className="text-caption text-muted-foreground">hello@senghaniarchitects.com</p>
               </motion.div>
             </div>
           </motion.div>
