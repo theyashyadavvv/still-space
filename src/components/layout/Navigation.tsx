@@ -36,18 +36,8 @@ export const Navigation = () => {
       <ScrollProgress />
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-luxury ${isScrolled
-          ? "bg-background/90 backdrop-blur-xl shadow-sm"
-          : "bg-transparent"
-          }`}
+        className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border shadow-sm"
       >
-        {/* Gradient border on scroll */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isScrolled ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-        />
 
         <nav className="container-editorial">
           <div className="flex items-center justify-between h-20 md:h-24">

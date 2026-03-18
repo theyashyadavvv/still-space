@@ -5,7 +5,7 @@ import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
-const heroImage = "/gen/architecture.png";
+import heroImage from "@/assets/hero-interior.jpg";
 const project1 = "/gen/interior.png";
 const project2 = "/gen/architecture.png";
 const project3 = "/gen/landscape.png";
