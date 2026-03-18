@@ -37,6 +37,45 @@ const stats = [
   { value: 98, suffix: "%", label: "Client Satisfaction" },
 ];
 
+const testimonials = [
+  {
+    quote: "ARSV Design Studiio understood what we couldn't articulate. They created a home that feels like it was always there, waiting for us.",
+    author: "Elena M.",
+    role: "Homeowner, Hillside Residence",
+    rating: 5,
+  },
+  {
+    quote: "Working with them was a masterclass in restraint. They removed everything unnecessary until only beauty remained.",
+    name: "James Chen",
+    role: "Developer, Urban Lofts",
+    rating: 5,
+  },
+  {
+    quote: "The visualizations were indistinguishable from photographs. It gave us complete confidence before breaking ground.",
+    name: "Elena Rodriguez",
+    role: "Architect, Partner at RDZ Studio",
+    rating: 5,
+  },
+  {
+    quote: "The vibrant colors and warm tones they brought to our living space transformed it completely. It feels energetic yet incredibly luxurious.",
+    name: "Rohan Patel",
+    role: "Homeowner, Mumbai Villa",
+    rating: 5,
+  },
+  {
+    quote: "Their approach to landscape design is unmatched. Our courtyard is now an elegant sanctuary illuminated perfectly at dusk.",
+    name: "Sara M.",
+    role: "Boutique Hotel Owner",
+    rating: 5,
+  },
+  {
+    quote: "From the first conversation to the final execution, ARSV Design Studiio delivered a masterpiece that perfectly reflects our modern Indian ethos.",
+    name: "Vikram S.",
+    role: "CEO, TechPark Developments",
+    rating: 5,
+  },
+];
+
 const Index = () => {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -368,6 +407,47 @@ const Index = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Client Testimonials */}
+      <section className="section-padding bg-muted/30">
+        <div className="container-editorial">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <span className="text-label text-muted-foreground">Client Words</span>
+              <h2 className="mt-4 text-headline max-w-2xl mx-auto">
+                What our clients say about working with us.
+              </h2>
+            </div>
+          </AnimatedSection>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <AnimatedSection key={index} delay={index * 0.15}>
+                <div className="p-8 border border-border bg-background rounded-2xl h-full flex flex-col justify-between group hover:border-accent/50 transition-colors relative overflow-hidden">
+                  <span className="absolute -top-4 -left-2 font-serif text-[120px] text-accent/5 leading-none pointer-events-none select-none">"</span>
+                  <div className="relative z-10">
+                    <div className="flex gap-1 mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <span key={i} className="text-accent text-lg">★</span>
+                      ))}
+                    </div>
+                    <blockquote className="text-body font-serif italic text-muted-foreground mb-8 text-lg">"{testimonial.quote}"</blockquote>
+                  </div>
+                  <div className="relative z-10 flex items-center gap-4 mt-auto">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent/30 to-accent/10 flex items-center justify-center">
+                      <span className="font-serif text-accent">{testimonial.name ? testimonial.name.charAt(0) : (testimonial as any).author?.charAt(0)}</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">{testimonial.name || (testimonial as any).author}</p>
+                      <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
