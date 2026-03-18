@@ -59,9 +59,9 @@ export const Navigation = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <img src={logoImage} alt="Senghani Architects Logo" className="h-10 w-auto object-contain" />
+                <img src={logoImage} alt="ARSV Design Studiio Logo" className="h-10 w-auto object-contain" />
                 <span className="font-serif text-xl md:text-2xl font-light tracking-wide text-foreground inline-block">
-                  <span className="gradient-text-gold">SENGHANI ARCHITECTS</span>
+                  <span className="gradient-text-gold">ARSV DESIGN STUDIIO</span>
                 </span>
               </motion.div>
               <motion.span
@@ -210,7 +210,7 @@ export const Navigation = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                <p className="text-caption text-muted-foreground">hello@senghaniarchitects.com</p>
+                <p className="text-caption text-muted-foreground">arsvdesignstudio@gmail.com</p>
               </motion.div>
             </div>
           </motion.div>

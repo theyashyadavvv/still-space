@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    quote: "Senghani Architects understood what we couldn't articulate. They created a home that feels like it was always there, waiting for us.",
-    name: "Sarah Mitchell",
+    quote: "ARSV Design Studiio understood what we couldn't articulate. They created a home that feels like it was always there, waiting for us.",
+    author: "Elena M.",
     role: "Homeowner, Hillside Residence",
     rating: 5,
   },
@@ -19,6 +19,24 @@ const testimonials = [
     quote: "The visualizations were indistinguishable from photographs. It gave us complete confidence before breaking ground.",
     name: "Elena Rodriguez",
     role: "Architect, Partner at RDZ Studio",
+    rating: 5,
+  },
+  {
+    quote: "The vibrant colors and warm tones they brought to our living space transformed it completely. It feels energetic yet incredibly luxurious.",
+    name: "Rohan Patel",
+    role: "Homeowner, Mumbai Villa",
+    rating: 5,
+  },
+  {
+    quote: "Their approach to landscape design is unmatched. Our courtyard is now an elegant sanctuary illuminated perfectly at dusk.",
+    name: "Sara M.",
+    role: "Boutique Hotel Owner",
+    rating: 5,
+  },
+  {
+    quote: "From the first conversation to the final execution, ARSV Design Studiio delivered a masterpiece that perfectly reflects our modern Indian ethos.",
+    name: "Vikram S.",
+    role: "CEO, TechPark Developments",
     rating: 5,
   },
 ];

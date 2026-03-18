@@ -252,8 +252,8 @@ const Contact = () => {
                 >
                   <span className="text-label text-muted-foreground">Email</span>
                   <p className="mt-3 text-body">
-                    <a href="mailto:hello@senghaniarchitects.com" className="link-underline hover:text-accent transition-colors">
-                      hello@senghaniarchitects.com
+                    <a href="mailto:arsvdesignstudio@gmail.com" className="link-underline hover:text-accent transition-colors">
+                      arsvdesignstudio@gmail.com
                     </a>
                   </p>
                 </motion.div>
@@ -263,7 +263,7 @@ const Contact = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <span className="text-label text-muted-foreground">Phone</span>
-                  <p className="mt-3 text-body">+1 (555) 123-4567</p>
+                  <p className="mt-3 text-body">092208 37777 / +91 92208 37777</p>
                 </motion.div>
 
                 <motion.div
@@ -272,9 +272,9 @@ const Contact = () => {
                 >
                   <span className="text-label text-muted-foreground">Studio</span>
                   <p className="mt-3 text-body text-muted-foreground">
-                    123 Design District<br />
-                    New York, NY 10001<br />
-                    United States
+                    Vasai<br />
+                    Maharashtra<br />
+                    India
                   </p>
                 </motion.div>
 
@@ -300,10 +300,10 @@ const Contact = () => {
                         className="w-12 h-12 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center"
                         animate={{ y: [0, -5, 0] }}
                         transition={{ duration: 2, repeat: Infinity }}
-                      >
+                        >
                         <span className="text-xl">📍</span>
                       </motion.div>
-                      <p className="text-caption text-muted-foreground">New York, NY</p>
+                      <p className="text-caption text-muted-foreground">Vasai, India</p>
                     </div>
                   </div>
                   {/* Decorative grid pattern */}

@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
-import heroImage from "@/assets/hero-interior.jpg";
+const project1 = "/gen/interior.png";
+const project2 = "/gen/architecture.png";
+const project3 = "/gen/landscape.png";
+const project4 = "/gen/interior.png";
+const heroImage = "/gen/architecture.png";
 
 const projects = [
   {

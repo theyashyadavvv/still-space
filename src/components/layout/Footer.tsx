@@ -37,7 +37,7 @@ export const Footer = () => {
               </motion.span>
             </Link>
             <p className="mt-6 text-body text-muted-foreground max-w-xs">
-              Architecture and interior design studio crafting spaces of quiet luxury.
+              Architectural, Interior, & Landscape Design Firm In India.
             </p>
 
             {/* Social Icons */}
@@ -94,15 +94,15 @@ export const Footer = () => {
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <a href="mailto:hello@senghaniarchitects.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                  hello@senghaniarchitects.com
+                <a href="mailto:arsvdesignstudio@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
+                  arsvdesignstudio@gmail.com
                 </a>
               </motion.p>
               <p className="text-body text-muted-foreground">
-                +1 (555) 123-4567
+                +91 92208 37777
               </p>
               <p className="text-body text-muted-foreground">
-                New York, NY
+                Vasai, Maharashtra, India
               </p>
             </div>
 
@@ -123,7 +123,7 @@ export const Footer = () => {
           viewport={{ once: true }}
         >
           <p className="text-caption text-muted-foreground">
-            © {new Date().getFullYear()} Senghani Architects. All rights reserved.
+            © {new Date().getFullYear()} ARSV Design Studiio. All rights reserved.
           </p>
           <div className="flex gap-8">
             <a href="#" className="text-caption text-muted-foreground hover:text-foreground transition-colors duration-500">

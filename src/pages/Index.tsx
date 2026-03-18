@@ -5,10 +5,10 @@ import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
-import heroImage from "@/assets/hero-interior.jpg";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
+const heroImage = "/gen/architecture.png";
+const project1 = "/gen/interior.png";
+const project2 = "/gen/architecture.png";
+const project3 = "/gen/landscape.png";
 
 const featuredProjects = [
   {
@@ -161,6 +161,35 @@ const Index = () => {
                   <AnimatedCounter to={stat.value} suffix={stat.suffix} />
                 </div>
                 <p className="mt-2 text-caption text-muted-foreground">{stat.label}</p>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Design Process Section */}
+      <section className="section-padding bg-background/50">
+        <div className="container-editorial">
+          <AnimatedSection>
+            <span className="text-label text-muted-foreground">Our Process</span>
+            <h2 className="mt-4 text-headline max-w-2xl">
+              From Concept to Creation
+            </h2>
+          </AnimatedSection>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
+            {[
+              { step: "01", title: "Discovery", desc: "Understanding your vision, lifestyle, and the vibrant essence of the space you want to inhabit." },
+              { step: "02", title: "Curation", desc: "Developing a mood board with rich, energetic colors and bold architectural structures." },
+              { step: "03", title: "Execution", desc: "Bringing the design to life with unparalleled craftsmanship and attention to detail." }
+            ].map((process, index) => (
+              <AnimatedSection key={process.step} delay={index * 0.2}>
+                <div className="p-8 border border-border/50 rounded-xl relative overflow-hidden group hover:border-accent/50 transition-colors h-full">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+                  <span className="font-serif text-5xl text-accent/20 font-light">{process.step}</span>
+                  <h3 className="text-2xl font-serif mt-6">{process.title}</h3>
+                  <p className="mt-4 text-muted-foreground">{process.desc}</p>
+                </div>
               </AnimatedSection>
             ))}
           </div>

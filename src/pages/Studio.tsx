@@ -126,7 +126,7 @@ const Studio = () => {
                     transition={{ delay: 0.1 }}
                     viewport={{ once: true }}
                   >
-                    Senghani Architects was founded on a simple conviction: the best design disappears.
+                    ARSV Design Studiio was founded on a simple conviction: the best design disappears.
                     It serves. It endures. It refuses to compete for attention.
                   </motion.p>
                   <motion.p
